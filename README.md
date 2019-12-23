@@ -1,0 +1,2 @@
+# arduino_Bluetooth_Sereail
+センサ値をPCに送る例
