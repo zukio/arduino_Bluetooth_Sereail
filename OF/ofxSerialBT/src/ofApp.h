@@ -21,5 +21,6 @@ public:
     ofx::IO::SerialDevice device;
     ofSerial serial;
     float logText;
+	int outputNum = 0;
 
 };
