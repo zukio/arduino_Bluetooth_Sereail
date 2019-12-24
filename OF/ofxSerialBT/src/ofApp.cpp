@@ -67,6 +67,7 @@ void ofApp::update()
     {
         // Read all bytes from the device;
         uint8_t buffer[1024];
+        static string str;
 
         while (device.available() > 0)
         {
@@ -75,10 +76,13 @@ void ofApp::update()
             for (std::size_t i = 0; i < sz; ++i)
             {
                 std::cout << buffer[i];
-
+ 
+                if (i != 0 && buffer[i - 1] == '\r') {
+                    std::cout << "data:";
+                } 
             }
         }
-
+ 
 
         // Send some new bytes to the device to have them echo'd back.
         std::string text = "Frame Number: " + ofToString(ofGetFrameNum());
