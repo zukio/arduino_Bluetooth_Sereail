@@ -73,7 +73,7 @@ void ofApp::update()
         {
             std::size_t sz = device.readBytes(buffer, 1024);
 
-			string outputString;
+			string outputString = "";
 
             for (std::size_t i = 0; i < sz; ++i)
             {
@@ -87,12 +87,14 @@ void ofApp::update()
 				}
 
 				if (i != 0 && buffer[i - 1] == '\r') {
-					if (outputString >= 0)
+
+					if (outputString != "")
 					{
 						outputNum = stoi(outputString);
 						//コメントアウト　std::cout << "data:";
 						ofLog(OF_LOG_NOTICE, "data:" + outputString);
 						outputString = "";  //初期化
+
 					}
 				}
             }
