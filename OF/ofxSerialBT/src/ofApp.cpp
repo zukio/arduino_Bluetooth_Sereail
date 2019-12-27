@@ -13,7 +13,7 @@ void ofApp::setup()
 
     ofSetWindowShape(600, 400);
     ofSetFrameRate(30);
-
+	ofLogToConsole();
 
     // 1. Upload the `Echo.ino` sketch (in this example's `Arduino/` folder) to
     // an Arduino-compatible board.
@@ -73,13 +73,30 @@ void ofApp::update()
         {
             std::size_t sz = device.readBytes(buffer, 1024);
 
+			string outputString = "";
+
             for (std::size_t i = 0; i < sz; ++i)
             {
-                std::cout << buffer[i];
- 
-                if (i != 0 && buffer[i - 1] == '\r') {
-                    std::cout << "data:";
-                } 
+                //コメントアウト std::cout << buffer[i];
+
+				char c = buffer[i];
+				//ASCII 0 ～9 
+				if (c >= 48 && c <= 57)
+				{
+					outputString += c;
+				}
+
+				if (i != 0 && buffer[i - 1] == '\r') {
+
+					if (outputString != "")
+					{
+						outputNum = stoi(outputString);
+						//コメントアウト　std::cout << "data:";
+						ofLog(OF_LOG_NOTICE, "data:" + outputString);
+						outputString = "";  //初期化
+
+					}
+				}
             }
         }
  
