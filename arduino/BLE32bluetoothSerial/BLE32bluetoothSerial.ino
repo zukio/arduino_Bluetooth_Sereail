@@ -20,8 +20,8 @@ const char* deviceName = "ESP32";
 
 
 void setup() {
-  //Serial.begin(115200);
-  //Serial.println("The device started, now you can pair it with bluetooth!");
+  Serial.begin(115200);
+  Serial.println("The device started, now you can pair it with bluetooth!");
   String deviceNameSerial = String(deviceName);
   deviceNameSerial  += "_Serial_BT";
   Serial_BT.begin(deviceNameSerial); //Bluetooth device name
@@ -34,6 +34,9 @@ void loop() {
       Serial_BT.println(sensourValue);
       delay(80);
     }
+  }
+  if(Serial.available()){
+    Serial.println(sensourValue);
   }
   delay(20);
 }

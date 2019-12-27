@@ -37,7 +37,7 @@ void ofApp::setup()
 
     if (!devicesInfo.empty())
     {
-        int port = 1; //使用可能なポートの何番目か
+        int port = 0; //使用可能なポートの何番目か
 
         // Connect to the first matching device.
         bool success = device.setup(devicesInfo[port], 115200);
